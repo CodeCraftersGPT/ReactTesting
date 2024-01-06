@@ -5,18 +5,14 @@ const Books = () => {
     const booksApi = 'http://localhost:4000/books';
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(booksApi); // Assuming the books API is defined in the server folder
-                const data = await response.json();
-                setBooks(data);
-            } catch (error) {
-                console.error('Error fetching books:', error);
-            }
-        };
 
-        fetchData();
-    }, []);
+        fetch(booksApi)
+        .then(response => response.json())
+        .then(data => setBooks(data))
+        .catch(error => console.error('Error fetching data: ', error));
+
+
+           }, []);
 
     return (
         <div>
